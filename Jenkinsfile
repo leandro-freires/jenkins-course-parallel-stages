@@ -23,12 +23,12 @@ pipeline {
             parallel {
                 stage('Deploy to Staging') {
                     steps {
-                        sh "cp parallel-stages/target/parallel-stages.war root@${params.tomcat_dev}:/d/development/servers/apache-tomcat-9.0.38-staging/webapps"
+                        sh "cp $JENKINS_HOME/workspace/fully-automated-pipeline/target/parallel-stages.war root@${params.tomcat_dev}:/d/development/servers/apache-tomcat-9.0.38-staging/webapps"
                     }
                 }
                 stage('Deploy to Production') {
                     steps {
-                        sh "cp parallel-stages/target/parallel-stages.war root@${params.tomcat_prod}:/d/development/servers/apache-tomcat-9.0.38-prod/webapps"
+                        sh "cp $JENKINS_HOME/workspace/fully-automated-pipeline/target/parallel-stages.war root@${params.tomcat_prod}:/d/development/servers/apache-tomcat-9.0.38-prod/webapps"
                     }
                 }
             }
